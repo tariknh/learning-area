@@ -19,15 +19,19 @@
   <body>
 
     <section class="preview">
-
-
-
+      <label for="search">Phonebook lookup</label>
+      <input id="search" placeholder="Enter a name..." type="text"/>
+      <button>Search</button>
     </section>
 
   </body>
   <script>
     const name = 'Mustafa';
     const para = document.createElement('p');
+    const btn = document.querySelector('button');
+    const input = document.querySelector('input');
+    btn.addEventListener("click",getInput);
+
 
     const phonebook = [
       { name : 'Chris', number : '1549' },
@@ -41,7 +45,33 @@
     ]
 
     // Add your code here
+    let thePerson;
+    function getInput(){
+      thePerson = input.value;
+      input.value = '';
+      input.focus();
+      findNumber();
 
+      /*for (const person of phonebook){
+        if (thePerson.toLowerCase() === person.name.toLowerCase()){
+          para.textContent = `${person.name}'s number is ${person.number}.`;
+          break;
+        }else{
+          para.textContent = "Could not find the person in the phonebook";
+        }
+      }*/
+    }
+
+    function findNumber(){
+      for (const person of phonebook){
+        if (thePerson.toLowerCase() === person.name.toLowerCase()){
+          para.textContent = `${person.name}'s number is ${person.number}.`;
+          break;
+        }else{
+          para.textContent = "Could not find the person in the phonebook";
+        }
+      }
+    }
     // Don't edit the code below here!
     const section = document.querySelector('section');
     section.appendChild(para);
